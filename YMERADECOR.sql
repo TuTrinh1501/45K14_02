@@ -52,7 +52,7 @@ create table GioHang(
 									MaSP varchar(15),
 									SoLuong int,
 									primary key (MaGH, MaSP),
-									--foreign key (MaGH) references KhachHang(MaGH),
+									foreign key (MaGH) references KhachHang(MaGH),
 									foreign key (MaSP) references SanPham(MaSP)
 									)
 --
@@ -64,9 +64,10 @@ create table DonHang(
 									SoLuong int,
 									NgayDatHang datetime,
 									primary key (MaDH, MaSP),
-									--foreign key (MaKH) references KhachHang(MaKH),
+									foreign key (MaKH) references KhachHang(MaKH),
 									foreign key(MaSP) references SanPham(MaSP)
 									)
 --
 --
+
 
