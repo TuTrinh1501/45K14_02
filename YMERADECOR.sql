@@ -19,7 +19,7 @@ create table KhachHang(
 									SDTKH varchar(13),
 									GioiTinhKH bit, -- 0:nam ; 1: nữ
 									DiaChiKH nvarchar(200),
-									primary key (MaKH, MaGH),
+									primary key(MaKH),
 									foreign key (Tendangnhap) references TaiKhoan(Tendangnhap)
 									)
 --
@@ -51,7 +51,7 @@ create table GioHang(
 									MaGH varchar(15) ,
 									MaSP varchar(15),
 									SoLuong int,
-									primary key (MaGH, MaSP),
+									primary key(MaGH, MaSP),
 									--foreign key (MaGH) references KhachHang(MaGH),
 									foreign key (MaSP) references SanPham(MaSP)
 									)
@@ -63,8 +63,8 @@ create table DonHang(
 									MaSP varchar(15),
 									SoLuong int,
 									NgayDatHang datetime,
-									primary key (MaDH, MaSP),
-									--foreign key (MaKH) references KhachHang(MaKH),
+									primary key(MaDH, MaSP),
+									foreign key (MaKH) references KhachHang(MaKH),
 									foreign key(MaSP) references SanPham(MaSP)
 									)
 --
