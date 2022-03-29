@@ -1,0 +1,24 @@
+.wrap_main{
+    display:flex ;
+    width: 100%;
+}
+.left{
+    width: 30%;
+}
+.right{
+    width: 70%;
+}
+.input2{
+    background-color: #DDDDDD;
+    margin-right: 30px;
+  }
+.paddingleft20{
+    display: block;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.em-wrapper-footer{
+    
+    padding-top: 100px;
+}
