@@ -61,3 +61,58 @@ p {
     text-decoration: underline;
     color: #2691d9;
 }
+.dangky{
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid grey ;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 100px;
+  }
+.dangky h2{
+    display: inline-block;
+    color: black;
+}
+.dangky input{
+   width: 200px;
+   height: 40px;
+   border-radius: 5px;
+   border: 1px solid gray;
+   padding-left: 20px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+}
+.check input{
+    width: 15px;
+    height: 15px;
+}
+.dangky button {
+    width: 220px;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    background-color: #2691d9;
+    color: white;
+}
+p {
+    display: inline-block;
+    float: left;
+    padding-left: 40px;
+    margin: 0px;
+}
+.check{
+    float: left;
+    padding-left: 40px;
+    margin-bottom: 1px;
+
+}
+.dangky a{
+    float: left ;
+    padding-left: 50px;
+    text-decoration: none;
+    margin-top: 10px ;
+    text-decoration: underline;
+    color: #2691d9;
+}
