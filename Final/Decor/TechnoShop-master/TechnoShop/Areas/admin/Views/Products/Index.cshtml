@@ -1,0 +1,98 @@
+﻿@model IEnumerable<TechnoShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="table"  width="100%">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Mô Tả
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Giảm Giá
+            </th>
+            <th>
+                Trạng Thái
+            </th>
+            <th>
+                Thể loại
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                   <img src="@item.Image" width="100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PercentOfDiscount)
+                </td>
+                <td>
+                    @if (item.Status == 0)
+                    {
+                        <p style="color:red">InActive</p>
+                    }
+                    else
+                    {
+                        <p style="color:forestgreen">Active</p>
+                    }
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Category_Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Product_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Product_ID }) |
+                    @if (item.Status == 0)
+                    {
+                        @Html.ActionLink("Active", "DeleteConfirmed", new { id = item.Product_ID })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("InActive", "DeleteConfirmed", new { id = item.Product_ID })
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>

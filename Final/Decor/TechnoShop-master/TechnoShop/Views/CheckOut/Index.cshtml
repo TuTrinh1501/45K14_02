@@ -1,0 +1,158 @@
+﻿@model TechnoShop.Models.User
+@using TechnoShop.Models;
+@using TechnoShop.DAO;
+@using TechnoShop.Common;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap">
+                        <nav aria-label="breadcrumb">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="shop.html">shop</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">checkout</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb area end -->
+    <!-- checkout main wrapper start -->
+
+    <div class="checkout-page-wrapper section-padding">
+        <div class="container">
+            <div class="row">
+                <!-- Checkout Billing Details -->
+                <div class="col-lg-6">
+                    @using (Html.BeginForm("Edit", "User", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4>Confirm</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.First_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.First_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Last_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Last_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+                <!-- Order Summary Details -->
+                <div class="col-lg-12">
+                    <div class="order-summary-details">
+                        <h4 class="checkout-title">Your Order Summary</h4>
+                        <div class="order-summary-content">
+                            <div class="table-responsive cart_info">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr class="cart_menu">
+                                            <td class="image">Item</td>
+                                            <td class="description"></td>
+                                            <td class="price">Price</td>
+                                            <td class="total">Total</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            double totalprice = 0;
+                                            UserLogin session = (UserLogin)Session[CommonConstants.User_Session];
+                                        }
+                                        @foreach (var order in OrderDetailsDAO.GetListOrder(OrdersDAO.getOrderIDbyUser(session.UserID)))
+                                        {
+                                            foreach (var p in ProductDAO.GetList())
+                                            {
+                                                if (order.Product_ID == p.Product_ID)
+                                                {
+                                                    totalprice += Convert.ToDouble(p.Price * order.Quantity);
+                                                    <tr>
+                                                        <td class="image">
+                                                            <a href="Product/Details?id=@p.Product_ID"><img src="@p.Image" width="200" alt=""></a>
+                                                        </td>
+                                                        <td class="cart_description">
+                                                            <h4><a href="Product/Details?id=@p.Product_ID">@p.Product_Name</a></h4>
+                                                            <p>Prodcut ID : @p.Product_ID</p>
+                                                        </td>
+                                                        <td class="cart_price">
+                                                            <p>@string.Format("{0:#,###.##}", (p.Price))Đ</p>
+                                                        </td>
+                                                        <td class="cart_total">
+                                                            <p class="cart_total_price">@string.Format("{0:#,###.##}", (p.Price * order.Quantity))Đ</p>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+
+                                        <tr>
+                                            <td colspan="4">&nbsp;</td>
+                                            <td colspan="2">
+                                                <table class="table table-condensed total-result">
+                                                    <tr>
+                                                        <td>Total</td>
+                                                        <td><span>@string.Format("{0:#,###.##}", (totalprice))Đ</span></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Order Payment Method -->
+                            <div class="order-payment-method">
+                                <a href="CheckOut/Checkout?total=@totalprice" type="submit" class="btn btn-default">Place Order</a>
+                            </div>
+                            <div class="order-payment-method">
+                                <a href="CheckOut/Payment" type="submit" class="btn btn-default">Payment MoMo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- checkout main wrapper end -->
+</main>
+
+
+

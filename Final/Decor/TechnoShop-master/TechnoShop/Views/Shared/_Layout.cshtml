@@ -1,0 +1,387 @@
+﻿@using TechnoShop.Models;
+@using TechnoShop.Common;
+@{ 
+    TechnoShopEntities db = new TechnoShopEntities();
+    var contact = db.Contacts.Where(x => x.id == 1).FirstOrDefault();
+}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>
+        Website bán nội thất
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="HTMLCooker">
+
+    <meta name="csrf-token" content="T43XuN27xhDmSVLZxMy9acTjTEhsRJdMiZskiHKv">
+
+    <!-- ================= Google Fonts ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- Menu CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/menu.css" media="all" />
+    <!-- Mega Menu CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/megamenu.css" media="all" />
+
+    <!-- Default CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/styles.css" media="all" />
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/font-awesome.css" media="all" />
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/owl.carousel.css" media="all" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/responsive.css" media="all" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/bootstrap.css" media="all" />
+
+    <!-- Product Labels CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/em_productlabels.css"
+          media="all" />
+
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/jquery.fancybox.css" media="all" />
+
+    <!-- Responsive Tab CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/responsive-tabs.css" media="all" />
+    <!-- Print CSS -->
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/print.css" media="print" />
+    <!-- Fashion CSS -->
+    <link rel='stylesheet' type='text/css' media='all' href="~/public/home/css/style_fashion.css" />
+    <!-- Fashion CSS -->
+    <link rel='stylesheet' type='text/css' media='all' href="~/public/home/css/color.css" />
+
+    <link rel="stylesheet" type="text/css" href="~/public/home/css/loader.css">
+
+    <!-- Jquery Js -->
+    <script type="text/javascript" src="~/public/home/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap Js -->
+    <script type="text/javascript" src="~/public/home/js/bootstrap.min.js"></script>
+    <!-- Lazy Load Js -->
+    <script type="text/javascript" src="~/public/home/js/jquery.lazyload.min.js"></script>
+    <!-- Owl Carousel Js -->
+    <script type="text/javascript" src="~/public/home/js/owl.carousel.js"></script>
+    <!-- Ios Orientation Change Js -->
+    <script type="text/javascript" src="~/public/home/js/ios-orientationchange-fix.js"></script>
+    <!-- Hover Intent Js -->
+    <script type="text/javascript" src="~/public/home/js/jquery.hoverIntent.js"></script>
+    <!-- Select UI Js -->
+    <script type="text/javascript" src="~/public/home/js/selectUl.js"></script>
+    <!-- Throttle Js -->
+    <script type="text/javascript" src="~/public/home/js/jquery.ba-throttle-debounce.js"></script>
+    <!-- EM Js -->
+    <script type="text/javascript" src="~/public/home/js/em0131.js"></script>
+    <!-- MegaMenu Js -->
+    <script type="text/javascript" src="~/public/home/js/megamenu.js"></script>
+    <!-- Responsive Tab Js -->
+    <script type="text/javascript" src="~/public/home/js/jquery.custom.responsiveTabs.js"></script>
+    <!-- Fancybox Js -->
+    <script type="text/javascript" src="~/public/home/js/jquery.fancybox.js"></script>
+    <!-- Custom Js -->
+    <script type="text/javascript" src="~/public/home/js/custom.js"></script>
+
+    <script type="text/javascript" src="~/public/home/js/sweetalert.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/price-range.css" rel="stylesheet">
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/main.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+
+    @* Usermanagent style *@
+    @if (IsSectionDefined("UserManagementStyle"))
+    {
+        @RenderSection("UserManagementStyle", required: false)
+    }
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>
+
+    <link rel="shortcut icon" href="~/Images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/Images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+
+<body class="cms-index-index">
+    <div class="wrapper ">
+        <noscript>
+            <div class="global-site-notice noscript">
+                <div class="notice-inner">
+                    <p>
+                        <strong>JavaScript dường như đã bị vô hiệu hóa trong trình duyệt của bạn.</strong>
+                        <br /> Bạn phải bật JavaScript trong trình duyệt của mình để sử dụng chức năng của trang web
+                        này.
+                    </p>
+                </div>
+            </div>
+        </noscript>
+        <div class="page two-columns-left">
+            <div class="em-wrapper-header">
+                <div id="em-mheader" class="visible-xs container">
+                    <div id="em-mheader-top" class="row" style="background : #fff; margin-top: -10px;">
+                        <div class="em-logo col-xs-14" style="margin-left: -20px; margin-bottom: -35px;">
+                            <a href="#" class="logo">
+                                <img src="" />
+                            </a>
+                        </div>
+
+                    </div>
+                </div><!-- /#em-mheader -->
+                <div class="hidden-xs em-header-style08">
+                    <div class="em-header-top">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-24">
+                                    <div class="f-left">
+                                        <div class="f-left">
+                                            <ul style="margin-bottom: 0px !important; padding: 5px 10px;">
+                                                <li class="">
+                                                    <a href="#">
+                                                        YUME DECOR - TÔ ĐIỂM THẾ GIỚI BÊN TRONG NGÔI NHÀ CỦA BẠN
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div><!-- /.f-left -->
+
+                                    <div class="f-right" style="padding: 5px 10px;">
+                                        <div class="f-right">
+                                            <a href="#">
+                                                <i class="fa-brands fa-facebook-square"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa-brands fa-instagram-square"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa-solid fa-square-phone"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa-solid fa-square-envelope"></i>
+                                            </a>
+                                        </div>
+                                    </div><!-- /.f-right -->
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.em-header-top -->
+                    <div id="em-fixed-top"></div>
+                    <div class="em-header-bottom em-fixed-top" style="background : #f5984c;">
+                        <div class="container em-menu-fix-pos">
+                            <div class="row">
+                                <div class="col-sm-24">
+                                    <div class="f-right">
+                                        @{ UserLogin session = (UserLogin) Session["User_Session"];
+                                            int? orderID = 0;
+                                            int total = 0;
+                                            if (session != null)
+                                            {
+                                                try
+                                                {
+                                                    orderID = db.Orders.Where(x => x.Status == 1 && x.User_ID == session.UserID).FirstOrDefault()?.Order_ID;
+                                                    total = db.Order_Details.Where(x => x.Order_ID == orderID).Count();
+                                                }
+                                                catch (Exception e)
+                                                {
+                                                     orderID = 0;
+                                                     total = 0;
+                                                }
+
+                                            <div class="col-sm-11" style="color:white; margin-top: 16px;">
+                                        <div class="mainmenu pull-right">
+                                            <ul class="nav navbar-nav">
+                                                <li class="dropdown">
+                                                    <a style="color:white"  href="">Tài Khoản Của Tôi<i class="fa fa-angle-down"></i></a>
+                                                    <ul role="menu" class="sub-menu">
+                                                        <li><a style="color:white" href="User/Edit">Thay Đổi Thông Tin</a></li>
+                                                        <li><a style="color:white" href="OrderUser">Đơn Của Tôi</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a  style="color:white" href="@Url.Action("Index", "CheckOut")"><i class="fa fa-crosshairs"></i>Thanh Toán</a></li>
+                                                <div class="em-top-cart-sticky em-top-cart f-right">
+                                                    <div class="em-wrapper-js-topcart em-wrapper-topcart em-no-quickshop">
+                                                        <div class="em-container-topcart">
+                                                            <div class="em-summary-topcart">
+                                                                <a class="em-amount-js-topcart em-amount-topcart" title="Giỏ hàng"
+                                                                   href="">
+                                                                    <span class="em-topcart-qty">@total</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.em-wrapper-js-topcart -->
+                                                </div><!-- /.em-top-cart -->
+                                                <li><a style="color:white" href="@Url.Action("LogOut", "User")"><i class="fa fa-lock"></i>Đăng Xuất</a></li>
+                                            </ul>
+                                        </div>
+                                    </div> }
+                                else
+                                { <a href="@Url.Action("LogIn", "User")"  class="btn btn-lg" style="color:white; margin-top: 16px;">
+                                        Đăng nhập/Đăng Kí
+                                    </a>
+                                      } }
+                                    </div>
+                                    <div class="em-menu-hoz f-left">
+                                        <div id="em-main-megamenu">
+                                            <div class="em-menu">
+                                                <div class="megamenu-wrapper wrapper-4_7164">
+                                                    <div class="em_nav" id="toogle_menu_4_7164">
+                                                        <ul class="hnav em_hoz_menu effect-menu">
+                                                            <li class="menu-item-link menu-item-depth-0  menu-item-parent">
+                                                                <a class="em-menu-link"
+                                                                   href="/Home">
+                                                                    <span> Trang chủ </span>
+                                                                </a>
+                                                            </li><!-- /.menu-item-link -->
+
+                                                            <li class="menu-item-link menu-item-depth-0 hidden-sm hidden-md menu-item-parent">
+                                                                <a class="em-menu-link"
+                                                                   href="~/Product/Index">
+                                                                    <span> Danh mục sản phẩm </span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item-link menu-item-depth-0 hidden-sm hidden-md menu-item-parent">
+                                                                @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "search-box pull-right", @style = "display:flex" }))
+                                                                {
+
+                                                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @style = "margin:10px; width: 85%", @maxlength = "255", @placeholder = "Search" })
+                                                                }
+                                                    </div>
+
+                                                    </li><!
+                                                    <!-- /.menu-item-link -->
+                                                    </ul><!-- /.hnav em_hoz_menu -->
+                                                </div><!-- /.em_nav -->
+                                                </div><!-- /.megamenu-wrapper -->
+                                            </div><!-- /.em-menu -->
+                                        </div><!-- /#em-main-megamenu -->
+                                    </div><!-- /.em-menu-hoz -->
+                                </div>
+                            </div>
+                        </div><!-- /.container -->
+                    </div><!-- /.em-header-bottom -->
+                </div>
+            </div><!-- /.em-wrapper-header -->
+            <div class="em-wrapper-main">
+                <div class="container container-main">
+                    <div class="em-inner-main">
+                        <div class="em-main-container em-col2-left-layout">
+                            @RenderBody()
+
+                        </div>
+                    </div>
+                           
+                            <div class="em-wrapper-footer">
+                                <div class="em-footer-style09" style="background-color: #f5984c;">
+                                    <div class="em-footer-top">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm-24">
+                                                    <div class="em-footer-info">
+                                                        <div class="row">
+
+                                                            <div class="col-sm-6" style="margin-bottom : 20px;">
+                                                                <div class="em-block-title">
+                                                                    <p class="h4 em-text-upercase">
+                                                                        <span>Giới thiệu</span>
+                                                                    </p>
+                                                                </div>
+                                                                <ul id="collapse02" class="em-links em-block-content block-info">
+                                                                    <li class="em-links-item">
+                                                                        <span style="color: #ffffff;">@contact.gioithieu</span>
+                                                                    </li>
+                                                                    <li class="em-links-item">
+                                                                        <span style="color: #ffffff;">Địa chỉ: @contact.dienchi</span>
+                                                                    </li>
+                                                                    <li class="em-links-item">
+                                                                        <span style="color: #ffffff;">Website: yumedecor.com</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div><!-- /.col-sm-4 -->
+
+                                                            <div class="col-sm-6" style="margin-bottom : 10px;">
+                                                                <div class="em-block-title" data-collapse-target="#collapse02">
+                                                                    <p class="h4 em-text-upercase">
+                                                                        <span>Hỗ trợ khách hàng</span>
+                                                                    </p>
+                                                                </div>
+                                                                <ul id="collapse02" class="em-links em-block-content block-info">
+                                                                    <li class="em-links-item">
+                                                                        <a href="#">
+                                                                            <span>@contact.hotro</span>
+                                                                        </a>
+                                                                    </li>
+                                                                   
+                                                                </ul>
+                                                            </div><!-- /.col-sm-4 -->
+
+                                                            <div class="col-sm-4 block em_block-tag-cloud"
+                                                                 style="margin-bottom : 20px;">
+                                                                <div class="em-block-title">
+                                                                    <p class="h4 em-text-upercase">
+                                                                        <span>Liên hệ</span>
+                                                                    </p>
+                                                                </div>
+                                                                <ul id="collapse02" class="em-links em-block-content block-info">
+                                                                    <li class="em-links-item">
+                                                                        <span style="color: #ffffff;">Số điện thoại: @contact.sdt</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div><!-- /.col-sm-4 -->
+
+                                                            <div class="col-sm-6">
+                                                                <div class="em-block-title">
+                                                                    <p class="h4 em-text-upercase">
+                                                                        <span>Fanpage Facebook</span>
+                                                                    </p>
+                                                                </div>
+                                                                <ul id="collapse02" class="em-links em-block-content block-info">
+                                                                    <li class="em-links-item">
+                                                                        <span style="color: #ffffff;">Fanpage: @contact.facebook</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div><!-- /.col-sm-4 -->
+
+                                                        </div><!-- /.row -->
+
+                                                    </div><!-- /.em-footer-info -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.em-footer-top -->
+                                </div><!-- /.em-footer-style09 -->
+                            </div><!-- /.em-wrapper-footer -->
+                        </div><!-- /.page -->
+                    </div><!-- /.wrapper -->
+                    @* UserManagement script *@
+                    @if (IsSectionDefined("UserManagementScript"))
+                    {
+        @RenderSection("UserManagementScript", required: false)}
+
+                    <script src="~/Scripts/jquery.js"></script>
+                    <script src="~/Scripts/bootstrap.min.js"></script>
+                    <script src="~/Scripts/jquery.scrollUp.min.js"></script>
+                    <script src="~/Scripts/price-range.js"></script>
+                    <script src="~/Scripts/jquery.prettyPhoto.js"></script>
+                    <script src="~/Scripts/main.js"></script>
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/jqueryval")
+                    @RenderSection("scripts", required: false)
+</body>
+
+</html>
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('.se-pre-con').fadeOut("slow");
+    });
+</script>

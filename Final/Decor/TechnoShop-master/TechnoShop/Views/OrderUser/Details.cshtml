@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TechnoShop.Models.Order_Detail>
+@using TechnoShop.Models;
+@using TechnoShop.DAO;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+            <thead>
+                <tr class="cart_menu">
+                    <td class="image">Item</td>
+                    <td class="description"></td>
+                    <td class="price">Price</td>
+                    <td class="total">Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    double totalprice = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    foreach (var p in ProductDAO.GetList())
+                    {
+                        if (p.Product_ID == item.Product_ID)
+                        {
+                            totalprice += Convert.ToDouble(p.Price * item.Quantity);
+                            <tr>
+                                <td class="image">
+                                    <a href=""><img src="@p.Image" width="200" alt=""></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">@p.Product_Name</a></h4>
+                                    <p>Product ID: @p.Product_ID</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>@string.Format("{0:#,###.##}", (p.Price))Đ</p>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">@string.Format("{0:#,###.##}", (p.Price * item.Quantity))Đ</p>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+
+                }
+
+            </tbody>
+        </table>
+        <section id="do_action">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="total_area">
+                            <ul>
+
+                                <li>Shipping Cost <span>Free</span></li>
+                                <li>Total <span>@string.Format("{0:#,###.##}", (totalprice))Đ</span></li>
+                            </ul>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--/#do_action-->
+
+    </div>
+</div>
+

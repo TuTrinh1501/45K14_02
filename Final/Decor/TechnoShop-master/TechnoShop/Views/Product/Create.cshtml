@@ -1,0 +1,152 @@
+﻿@model TechnoShop.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+    .add-products input {
+        background: #f0f0e9;
+        border: 0;
+        color: #696763;
+        padding: 5px;
+        width: 100%;
+        border-radius: 0;
+        resize: none;
+    }
+
+    .btn-orange {
+        background: #fe980f !important;
+        color: snow !important;
+        width: 15% !important;
+    }
+
+   </style>
+
+<h2>Add New Product</h2>
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal add-products input">
+        <hr />
+       
+        <div class="form-group">
+            <label class="control-label col-md-2">Product Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Product_Name, new { htmlAttributes = new { @class = "", @style="width: 45%"} })
+                <br />
+                @Html.ValidationMessage("Product_Name",new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Description</label>
+            <div class="col-md-10">
+                <textarea cols="10" id="editor2" name="description" rows="10" data-sample-short></textarea>
+                @Html.ValidationMessage("Description", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Category Name</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Category_Name", (IEnumerable<SelectListItem>)ViewBag.listCategoryOption, new { @class = "", @style="width: 45% !important"})
+                <br />
+                @Html.ValidationMessage("Category_Name", new { @class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Price</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "", @style="width:45%"}})
+                <br />
+                @Html.ValidationMessage("Price", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Quantity</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "", @style="width:45%"} })
+                <br />
+                @Html.ValidationMessage("Quantity", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Image</label>
+            <div class="col-md-10">
+                <div style="display: flex; align-items: center;">
+                    <input type="file" id="postedFile" name="postedFile" class="form-control" style="width:45%" accept=".png, .jpg, .jpeg" />
+                    &emsp;<span>Extension File: "jpg", "jpeg", "png"</span>
+                </div>
+                <span class="text-danger">@ViewBag.error</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Discount</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PercentOfDiscount, new { htmlAttributes = new { @class = "", @style ="width:45%" } })
+                <br />
+                @Html.ValidationMessage("PercentOfDiscount", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-orange" />
+            </div>
+        </div>
+        <h4 style="color: #47a447;">@ViewBag.mess</h4>
+    </div>
+}
+
+<script>
+    CKEDITOR.replace('editor2', {
+        extraPlugins: 'uploadimage,image2',
+        height: 300,
+        removePlugins: 'image',
+
+        // Upload images to a CKFinder connector (note that the response type is set to JSON).
+        uploadUrl: '/Product/CkeditorSaveImage',
+        filebrowserImageUploadUrl: "/Images/product",
+
+        stylesSet: [{
+            name: 'Narrow image',
+            type: 'widget',
+            widget: 'image',
+            attributes: {
+                'class': 'image-narrow'
+            }
+        },
+        {
+            name: 'Wide image',
+            type: 'widget',
+            widget: 'image',
+            attributes: {
+                'class': 'image-wide'
+            }
+        }
+        ],
+
+        // Load the default contents.css file plus customizations for this sample.
+        contentsCss: [
+            'https://cdn.ckeditor.com/4.16.2/full-all/contents.css',
+            'https://ckeditor.com/docs/ckeditor4/4.16.2/examples/assets/css/widgetstyles.css'
+        ],
+
+        // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
+        // resizer (because image size is controlled by widget styles or the image takes maximum
+        // 100% of the editor width).
+        image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+        image2_disableResizer: true,
+        removeButtons: 'PasteFromWord'
+    });
+</script>
+
+
+

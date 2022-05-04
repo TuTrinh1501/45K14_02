@@ -1,0 +1,83 @@
+﻿@model TechnoShop.Models.ViewModel.ProductListViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listProduct = ViewBag.ListProduct;
+    var listCategory = ViewBag.ListCategory;
+    var max = ViewBag.Max;
+    var min = ViewBag.Min;
+}
+
+<style>
+    .resize_img {
+        width: 255px;
+        height: 237px;
+        object-fit: cover
+    }
+</style>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <ul class="nav nav-pills nav-stacked">
+                            @foreach (var category in listCategory)
+                            {
+                                <li><a href="/Product/Index?category=@category.Category_ID" style="color:black; font-size:larger; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">@category.Category_Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="price-range">
+                        <!--price-range-->
+                        <h2>Price Range</h2>
+                        <form action="/Product/Index" method="get">
+                            <div class="well">
+                                <div class="slider slider-horizontal" style="width: 100px;">
+                                    <div class="tooltip top" style="top: -30px; left: 70.8333px;">
+                                        <div class="tooltip-arrow"></div>
+                                        <div class="tooltip-inner">@string.Format("{0:#,###.##}", (min)) : @string.Format("{0:#,###.##}", (max))</div>
+                                    </div>
+                                    <input name="price" type="text" class="span2" data-slider-min="@min" data-slider-max="@max" data-slider-step="50" data-slider-value="[250,500]" id="sl2">
+                                </div><br>
+                                <b>@string.Format("{0:#,###.##}", (min))</b> <b class="pull-right">@string.Format("{0:#,###.##}", (max))</b>
+                                <button type="submit" class="btn btn-default add-to-cart">Search</button>
+                            </div>
+                        </form>
+                     
+                    </div><!--/price-range-->
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Features Items</h2>
+                    <div style="display:flex; justify-content:space-between; justify-items:center">
+                        <div class="col-sm-7">
+                           
+                        </div>
+                        @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "search-box pull-right", @style = "display:flex" }))
+                        {
+
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @style = "margin:10px; width: 85%", @maxlength = "255", @placeholder = "Search" })
+                        }
+                    </div>
+                    <div>
+                        @Html.Partial("ListProduct", Model, new ViewDataDictionary {{"listProduct", listProduct}})
+                    </div>
+                </div><!--features_items-->
+                <div>
+                    @Html.PagedListPager(Model.PageList, page => Url.Action("Index",
+                    new
+                    {
+                        page,
+                    }))
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

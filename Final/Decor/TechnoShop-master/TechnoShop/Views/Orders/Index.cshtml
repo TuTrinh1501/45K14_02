@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TechnoShop.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-condensed">
+    <thead>
+        <tr class="cart_menu">
+            <td class="image">Order ID</td>
+            <td class="price">Total Price</td>
+            <td class="quantity">Status</td>
+            <td class="total">Time</td>
+            <td></td>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <a>
+            <tr>
+                <td class="image">
+                    <a href="Orders/Details?id=@item.Order_ID">@Html.DisplayFor(modelItem => item.Order_ID)</a>
+                </td>
+                <td class="cart_price">
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td class="cart_quantity">
+                    @if (item.Status == 2)
+                    {
+                        <p>Wait</p>
+                    }
+                    else if (item.Status == 3)
+                    {
+                        <p>Shipping</p>
+                    }
+                    else if (item.Status == 4)
+                    {
+                        <p>Done</p>
+                    }
+                    else if (item.Status == 0)
+                    {
+                        <p>Cancel</p>
+                    }
+
+                </td>
+                <td class="cart_total">
+                    @Html.DisplayFor(modelItem => item.Created_Time)
+                </td>
+                <td cart_delete>
+                    <a class="cart_quantity_delete" href="CheckOut/Cancel?id=@item.Order_ID"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+            </a>
+
+        }
+    </tbody>
+
+
+
+</table>

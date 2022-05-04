@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TechnoShop.Models.Order_Detail>
+@using TechnoShop.Models;
+@using TechnoShop.DAO;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+            <thead>
+                <tr class="cart_menu">
+                    <td class="image">Item</td>
+                    <td class="description"></td>
+                    <td class="price">Price</td>
+                    <td class="total">Total</td>               
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    double totalprice = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    foreach (var p in ProductDAO.GetList())
+                    {
+                        if (p.Product_ID == item.Product_ID)
+                        {
+                            totalprice += Convert.ToDouble(p.Price * item.Quantity);
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img src="@p.Image" alt=""></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">@p.Product_Name</a></h4>
+                                    <p>Product ID: @p.Product_ID</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>$@p.Price</p>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">$@(p.Price * item.Quantity)</p>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+
+                }
+
+            </tbody>
+        </table>
+        <section id="do_action">
+            <div class="container">
+                <div class="heading">
+                    <h3>What would you like to do next?</h3>
+                    <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="total_area">
+                            <ul>
+
+                                <li>Shipping Cost <span>Free</span></li>
+                                <li>Total <span>$@totalprice</span></li>
+                            </ul>
+                            <a class="btn btn-default check_out" href="">Check Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--/#do_action-->
+
+    </div>
+</div>
+

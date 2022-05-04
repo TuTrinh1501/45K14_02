@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ec4ca791c6b5482d9da3874529f192f8" Name="Diagram1">
+        <EntityTypeShape EntityType="TechnoShopModel.Category" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoShopModel.Order_Details" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoShopModel.Order" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoShopModel.Product_Previews" Width="1.5" PointX="8.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoShopModel.Product" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoShopModel.Role" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoShopModel.sysdiagram" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoShopModel.User" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="TechnoShopModel.FK_CategoryProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoShopModel.FK_Order_Details_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoShopModel.FK_ProductOrderDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoShopModel.FK_UserOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoShopModel.FK_ProductProductPreview" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoShopModel.FK_UserProductPreview" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TechnoShop.Models.Contact>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th>
+           Giới Thiệu
+        </th>
+        <th>
+            FaceBook
+        </th>
+        <th>
+           Số Điện Thoại
+        </th>
+        <th>
+           Dịa Chỉ
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.gioithieu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.facebook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sdt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dienchi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+        </td>
+    </tr>
+}
+
+</table>

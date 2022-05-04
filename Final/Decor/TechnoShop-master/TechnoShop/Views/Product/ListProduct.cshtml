@@ -1,0 +1,39 @@
+﻿@model TechnoShop.Models.ViewModel.ProductListViewModel
+@using PagedList.Mvc
+
+
+@{
+    Layout = "";
+    var listProduct = ViewData["listProduct"];
+}
+
+@foreach (var product in Model.PageList)
+{
+<div class="col-sm-4">
+    <a href="/Product/Details?id=@product.Product_ID">
+        <div class="product-image-wrapper">
+            <div class="single-products">
+                <div class="productinfo text-center">
+                    @if (product.Image.Trim() == "")
+                    {
+    <img src="~/Images/product/Sadphotoicon.jpg" alt="" class="resize_img"> }
+else
+{
+    <img src="@product.Image" alt="" class="resize_img">}
+                <h2>@string.Format("{0:#,###.##}", (product.Price))</h2>
+                    <p>@product.Product_Name</p>
+                </div>
+                <div class="product-overlay">
+                    <div class="overlay-content">
+                        <h2>@string.Format("{0:#,###.##}", (product.Price))</h2>
+                        <p>@product.Product_Name</p>
+                        <a href="/OrderDetails/AddToCart?Product_id=@product.Product_ID&&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add To Wish List</a>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </a>
+    
+</div>
+}
